@@ -767,16 +767,15 @@ export function createTasksTower(deps) {
 
           while (loop && !shouldStop.value) {
     if (needStart) {
-        actId: 2606261
+        // ✅ 删掉了原先上方那行多余的 actId: 2606261，参数只正确留在下面大括号 {} 里面
         await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: 2606261 }, 5000);
         // 稍微等待一下
         await new Promise(r => setTimeout(r, 500));
     }
 
-       actId: 2606261
+    // ✅ 同样删掉了原先上方那行多余的 actId: 2606261，参数只正确留在下面大括号 {} 里面
     const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: 2606261 }, 5000);
     const battleData = fightRes?.battleData;
-                const curHP = battleData?.result?.accept?.ext?.curHP;
                 
                 const currentLevel = getTowerLevel(type, levelRewardMap);
 
