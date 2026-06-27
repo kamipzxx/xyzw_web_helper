@@ -767,12 +767,13 @@ export function createTasksTower(deps) {
 
           while (loop && !shouldStop.value) {
     if (needStart) {
+        actId: 2606261
         await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: 2606261 }, 5000);
         // 稍微等待一下
         await new Promise(r => setTimeout(r, 500));
     }
 
-    // 在这里给 towers_fight 也加上 actId
+       actId: 2606261
     const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: 2606261 }, 5000);
     const battleData = fightRes?.battleData;
                 const curHP = battleData?.result?.accept?.ext?.curHP;
