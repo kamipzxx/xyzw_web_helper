@@ -1,4 +1,4 @@
-import { getTowerActId } from "../towerActID.js";
+import ... from '../../towerActId.js';
 
 /**
  * 爬塔类任务
