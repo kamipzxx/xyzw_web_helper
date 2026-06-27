@@ -350,7 +350,7 @@ export function createTasksTower(deps) {
           "evotower_getinfo",
           {},
           5000,
-        );
+          );
 
         let currentEnergy = evotowerinfo1?.evoTower?.energy;
 
@@ -765,17 +765,18 @@ export function createTasksTower(deps) {
             let loop = true;
             let failCount = 0;
 
-          while (loop && !shouldStop.value) {
-    if (needStart) {
-        // ✅ 删掉了原先上方那行多余的 actId: 2606261，参数只正确留在下面大括号 {} 里面
-        await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: 2606261 }, 5000);
-        // 稍微等待一下
-        await new Promise(r => setTimeout(r, 500));
-    }
+            while (loop && !shouldStop.value) {
+                if (needStart) {
+                    // ✅ 完美移除多余单行，保留正确的对象内传参
+                    await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: 2606261 }, 5000);
+                    // 稍微等待一下
+                    await new Promise(r => setTimeout(r, 500));
+                }
 
-    // ✅ 同样删掉了原先上方那行多余的 actId: 2606261，参数只正确留在下面大括号 {} 里面
-    const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: 2606261 }, 5000);
-    const battleData = fightRes?.battleData;
+                // ✅ 完美移除多余单行，保留正确的对象内传参
+                const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: 2606261 }, 5000);
+                const battleData = fightRes?.battleData;
+                const curHP = battleData?.result?.accept?.ext?.curHP;
                 
                 const currentLevel = getTowerLevel(type, levelRewardMap);
 
