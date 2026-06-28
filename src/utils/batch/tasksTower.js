@@ -1,4 +1,4 @@
-import { getTowerActId } from '../towerActId.js';
+import { getTowerActId } from "../towerActId.js";
 
 /**
  * 爬塔类任务
@@ -350,7 +350,7 @@ export function createTasksTower(deps) {
           "evotower_getinfo",
           {},
           5000,
-          );
+        );
 
         let currentEnergy = evotowerinfo1?.evoTower?.energy;
 
@@ -767,14 +767,12 @@ export function createTasksTower(deps) {
 
             while (loop && !shouldStop.value) {
                 if (needStart) {
-                    // ✅ 完美移除多余单行，保留正确的对象内传参
-                    await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { towerType: type, actId: 2606261 }, 5000);
+                    await tokenStore.sendMessageWithPromise(tokenId, "towers_start", { actId: getTowerActId(), towerType: type }, 5000);
                     // 稍微等待一下
                     await new Promise(r => setTimeout(r, 500));
                 }
 
-                // ✅ 完美移除多余单行，保留正确的对象内传参
-                const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { towerType: type, actId: 2606261 }, 5000);
+                const fightRes = await tokenStore.sendMessageWithPromise(tokenId, "towers_fight", { actId: getTowerActId(), towerType: type }, 5000);
                 const battleData = fightRes?.battleData;
                 const curHP = battleData?.result?.accept?.ext?.curHP;
                 
